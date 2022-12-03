@@ -30,11 +30,9 @@ q3b=(x)=>{
         teambadge=0
         firstbag = bags[c].split("")
         firstbag.forEach(x=>{
-            if (!teambadge){
-                if (bags[c-1].includes(x)&&bags[c-2].includes(x)) {
-                    teambadge=x
-                    sum+=q3letterValue(x)
-                }
+            if (bags[c-1].includes(x)&&bags[c-2].includes(x)&&!teambadge) {
+                teambadge=x
+                sum+=q3letterValue(x)
             }
         })
     }
