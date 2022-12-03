@@ -22,14 +22,12 @@ q3a=(x)=>{
     })
     return sum
 }
-
 q3b=(x)=>{
-    sum=0
+    let sum = 0
     bags = x.split("\n")
     for(c=2;c<bags.length;c+=3){
         teambadge=0
-        firstbag = bags[c].split("")
-        firstbag.forEach(x=>{
+        bags[c].split("").forEach(x=>{
             if (bags[c-1].includes(x)&&bags[c-2].includes(x)&&!teambadge) {
                 teambadge=x
                 sum+=q3letterValue(x)
