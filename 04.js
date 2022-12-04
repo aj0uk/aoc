@@ -23,7 +23,7 @@ q04b=(x)=>{
         b = parseInt(pair1[1])
         c = parseInt(pair2[0])
         d = parseInt(pair2[1])
-        if ((a >= c && a <=d )||(b >= c && b <= d)||(a <= c && b >=d)) count++
+        if ((a >= c && a <=d )||(b >= c && b <= d)||(a <= c && b >=d)||(c <=a && d >= b)) count++
     })
     return count
 }
