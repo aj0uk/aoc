@@ -4,7 +4,11 @@ q04a=(x)=>{
         pairs = y.split(",")
         pair1 = pairs[0].split("-")
         pair2 = pairs[1].split("-")
-        if ((pair1[0]>=pair2[0])&&(pair1[1]<=pair2[1])||(pair2[0]>=pair1[0])&&(pair2[1]<=pair1[1])) count++
+        a = parseInt(pair1[0])
+        b = parseInt(pair1[1])
+        c = parseInt(pair2[0])
+        d = parseInt(pair2[1])
+        if ((a>=c)&&(b<=d)||(c>=a)&&(d<=b)) count++
     })
     return count
 }
