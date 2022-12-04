@@ -1,0 +1,18 @@
+tests =[ 
+    ['01a-t',q01a,q01test,24000],
+    ['01a-d',q01a,q01data,67622],
+    ['01b-t',q01b,q01test,45000],
+    ['01b-d',q01b,q01data,201491],
+    ['02a-t',q02a,q02test,15],
+    ['02b-d',q02a,q02data,14264],
+    ['02b-t',q02b,q02test,12],
+    ['02b-d',q02b,q02data,12382],
+    ['03a-t',q03a,q03test,157],
+    ['03a-d',q03a,q03data,8394],
+    ['03b-t',q03b,q03test,70],
+    ['03b-d',q03b,q03data,2413],
+    ['04a-t',q04a,q04test,2],
+    ['04a-d',q04a,q04data,540],
+    ['04b-t',q04b,q04test,4],
+    ['04b-d',q04b,q04data,872],
+]
