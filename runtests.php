@@ -2,11 +2,11 @@
     <head>
     <title> Advent of Code - 2022</title>
 <?php 
-    $answerFiles = glob('./2022-*-answer.js');
+    $answerFiles = glob('./*-data.js');
     foreach ($answerFiles as $line){ 
         $val = explode("-",$line)[1];
-        echo '<script src="./2022-'.$val.'-data.js"></script>'; 
-        echo '<script src="./2022-'.$val.'-answer.js"></script>';
+        echo '<script src="./'.$val.'-data.js"></script>'; 
+        echo '<script src="./'.$val.'.js"></script>';
     }
 ?>
     <script src="./tests.js"></script>
