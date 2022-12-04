@@ -4,7 +4,7 @@
 <?php 
     $answerFiles = glob('./*-data.js');
     foreach ($answerFiles as $line){ 
-        $val = explode("-",$line)[1];
+        $val = explode("-",$line)[0];
         echo '<script src="./'.$val.'-data.js"></script>'; 
         echo '<script src="./'.$val.'.js"></script>';
     }
