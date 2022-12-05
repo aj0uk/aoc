@@ -20,9 +20,7 @@ q05=(data,CrateMover=false)=>{
             } else {
                 line = x.split(" ")
                 if (!CrateMover) {
-                    for (let c=line[1];c>0;c--){
-                        this['stack'+line[5]].push(this['stack'+line[3]].pop())
-                    }  
+                    this['stack'+line[5]].push(...this['stack'+line[3]].splice(this['stack'+line[3]].length-line[1],line[1]).reverse()) 
                 }else{
                     this['stack'+line[5]].push(...this['stack'+line[3]].splice(this['stack'+line[3]].length-line[1],line[1]))
                 }
