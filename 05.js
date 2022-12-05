@@ -2,30 +2,45 @@ q05a=(x)=>{
     topLetters= ''
     setup = true
     firstsetup = true
-    stacks = []
+    stackcount = 0
     x.split("\n").forEach(x=>{
         if (x=="") setup = false
         if (setup) {
-            console.log('x len',x.length)
+//            console.log('x len',x.length)
             for (y=4;y<=x.length+1;y+=4){
-                if (firstsetup) {
-                    a = new Array()
-                    stacks.push(a)
-                }
+                
                 chunk = x.substring(y-4,y)
-                stacks[y/4].unshift(chunk[1])
-
-                console.log(chunk, stacks)
+                if (firstsetup) {
+                    window['stack'+y/4] = []
+                    stackcount++
+                }
+                if (!(chunk[1]==" ")) window['stack'+y/4].unshift(chunk[1])
+//                console.log(chunk, stackcount)
+//                for(c=1;c<=stackcount;c++){
+ //                   console.log('setup stack',c,'is',window['stack'+c])
+//                }
             }
+        firstsetup = false
+        console.log('setup')
         //    console.log('setup ',x)
         } else {
-            //do instructions 
-          //pop push etc.
+            console.log('processing',x)
+            line = x.split(" ")
+            for (c=line[1];c=0;c--){
+                window['stack'+line[5]].push(window['stack'+line[3]].pop())
+                console.log('moving',window['stack'+line[3]],'to',window['stack'+line[5]])
+            }
+            for(c=1;c<=stackcount;c++){
+                    console.log('stack',c,'is',window['stack'+c])
+            }
         }
-        stacks.forEach(x=>{
-            topLetters += stacks[x].pop()
-        })
     })
+    
+    console.log('processing done')
+    for(c=1;c<=stackcount;c++){
+        topLetters += window['stack'+c].pop()
+    }
+    console.log('result =',topLetters,stackcount)
     return topLetters
 }
 q05b=(x)=>{
