@@ -1,29 +1,17 @@
-q1a=(data)=>{
+q01=(data,topThree=false)=>{
     runningSum=highestSum=currentValue=0
+    sums=[]
     data.split("\n").forEach(x=>{
         currentValue = parseInt(x)
         if(x==""){
-            if(runningSum>highestSum) highestSum = runningSum
-            runningSum = 0
+            (topThree)?sums.push(runningSum):highestSum=(runningSum>highestSum)?runningSum:highestSum
+            runningSum=0
         } else { 
             runningSum += currentValue
         }
     })
-    return highestSum
+    if(topThree) sums.sort(function(a, b){return b - a})
+    return topThree?sums[0]+sums[1]+sums[2]:highestSum
 }
-
-q1b=(data)=>{
-    runningSum=currentValue=0
-    sums = []
-    data.split("\n").forEach(x=>{
-        currentValue = parseInt(x)
-        if(x==""){
-            sums.push(runningSum)
-            runningSum = 0
-        } else {
-            runningSum += currentValue
-        }
-    })
-    sums.sort(function(a, b){return b - a})
-    return sums[0]+sums[1]+sums[2]
-}
+q01a=(x)=>{ return q01(x) }
+q01b=(x)=>{ return q01(x,true) }
