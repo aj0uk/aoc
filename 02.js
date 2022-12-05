@@ -9,20 +9,13 @@ q2move = {
     Z:{A:"Y",B:"Z",C:"X"}
 }
 
-q2a=(data)=>{
+q02=(data,altmove=false)=>{
     let score = 0
     data.split("\n").forEach(x=>{
         moves = x.split(" ")
-        score += q2gameScore[moves[1]][moves[0]]
+        score += q2gameScore[(altmove)?q2move[moves[1]][moves[0]]:moves[1]][moves[0]]
     })
     return score
 }
-
-q2b=(data)=>{
-    let score = 0
-    data.split("\n").forEach(x=>{
-        moves = x.split(" ")
-        score += q2gameScore[q2move[moves[1]][moves[0]]][moves[0]]
-    })
-    return score
-}
+q02a=(x)=>{ return q02(x) }
+q02b=(x)=>{ return q02(x,true) }
