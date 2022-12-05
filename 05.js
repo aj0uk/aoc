@@ -20,7 +20,10 @@ q05=(data,CrateMover9001=false)=>{
             firstsetup=false
         }else{
             line = x.split(" ")
-            this['stack'+line[5]].push(...(CrateMover9001)?this['stack'+line[3]].splice(this['stack'+line[3]].length-line[1],line[1]):this['stack'+line[3]].splice(this['stack'+line[3]].length-line[1],line[1]).reverse())
+            c=line[1]
+            f=this['stack'+line[3]]
+            s=from.splice(f.length-c,c)
+            this['stack'+line[5]].push(...(CrateMover9001)?s:s.reverse())
         }
     })
     for(c=1;c<=stackcount;c++){
