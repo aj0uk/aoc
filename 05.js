@@ -1,34 +1,30 @@
-q05=(data,CrateMover=false)=>{
+q05=(data,CrateMover9001=false)=>{
     topLetters= ''
     setup = true
     firstsetup = true
     stackcount = 0
     data.split("\n").forEach(x=>{
-        if (x=="") {
+        if(x==""){
             setup = false
-        } else {
-            if (setup) {
-                for (y=4;y<=x.length+1;y+=4){
-                    chunk = x.substring(y-4,y)
-                    if (firstsetup) {
-                        this['stack'+y/4] = []
-                        stackcount++
-                    }
-                    if (!(chunk[1]==" ")) this['stack'+y/4].unshift(chunk[1])
+            return;
+        }
+        if(setup) {
+            for (y=4;y<=x.length+1;y+=4){
+                chunk=x.substring(y-4,y)
+                if(firstsetup){
+                    this['stack'+y/4] = []
+                    stackcount++
                 }
-                firstsetup = false
-            } else {
-                line = x.split(" ")
-                if (!CrateMover) {
-                    this['stack'+line[5]].push(...this['stack'+line[3]].splice(this['stack'+line[3]].length-line[1],line[1]).reverse()) 
-                }else{
-                    this['stack'+line[5]].push(...this['stack'+line[3]].splice(this['stack'+line[3]].length-line[1],line[1]))
-                }
+                if (!(chunk[1]==" ")) this['stack'+y/4].unshift(chunk[1])
             }
+            firstsetup=false
+        }else{
+            line = x.split(" ")
+            this['stack'+line[5]].push(...(CrateMover9001)?this['stack'+line[3]].splice(this['stack'+line[3]].length-line[1],line[1]):this['stack'+line[3]].splice(this['stack'+line[3]].length-line[1],line[1]).reverse())
         }
     })
     for(c=1;c<=stackcount;c++){
-        topLetters += this['stack'+c].pop()
+        topLetters+=this['stack'+c].pop()
     }
     return topLetters
 }
