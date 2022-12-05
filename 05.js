@@ -24,11 +24,7 @@ q05=(data,CrateMover=false)=>{
                         this['stack'+line[5]].push(this['stack'+line[3]].pop())
                     }  
                 }else{
-                    movestack=[]
-                    for (let c=line[1];c>0;c--){
-                        movestack.unshift(this['stack'+line[3]].pop())
-                    }
-                    this['stack'+line[5]].push(...movestack)
+                    this['stack'+line[5]].push(...this['stack'+line[3]].splice(this['stack'+line[3]].length-line[1],line[1]))
                 }
             }
         }
