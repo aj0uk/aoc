@@ -19,10 +19,10 @@ q05=(data,CrateMover9001=false)=>{
             }
             firstsetup=false
         }else{
-            line = x.split(" ")
+            line=x.split(" ")
             c=line[1]
             f=this['stack'+line[3]]
-            s=from.splice(f.length-c,c)
+            s=f.splice(f.length-c,c)
             this['stack'+line[5]].push(...(CrateMover9001)?s:s.reverse())
         }
     })
