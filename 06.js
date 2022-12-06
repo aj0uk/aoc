@@ -10,22 +10,23 @@ q06a=(x)=>{
     return markerfollows
 }
 q06b=(x)=>{
-    markerfollows = uniquecount= 0
+    marker = uniquecount= 0
     chunk = []
     b = x.split("")
-    for (c=0;c<b.length;c++){
+    for (c=14;c<b.length;c++){
+        for(d=13;d=0;d--){
+            if(b[c]!=b[c-d]){
+                uniquecount++
+            }else{
+                uniquecount=0
+                return
+            }
+        }
         if (uniquecount==14){
-            markerfollows = c
-            console.log(markerfollows)
+            marker = c
+            console.log('foundit')
         }
-        if(chunk.includes(b[c])){
-            uniquecount = 0
-        }else{
-            uniquecount++
-        }
-        if (chunk.length=14) chunk.pop()
-        chunk.unshift(b[c])
-        console.log(chunk,b[c],uniquecount,markerfollows)
+        console.log(uniquecount)
     }
     return markerfollows  //not working
 }
