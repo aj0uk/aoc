@@ -12,8 +12,8 @@ q06=(data,uniqueLength)=>{
     marker=0
     b=data.split("")
     for(c=uniqueLength;c<=b.length;c++){
-        if (marker) continue
         if (allUnique(data.substring(c-uniqueLength,c))) marker=c
+        if (marker) return
     }
     return marker
 }
