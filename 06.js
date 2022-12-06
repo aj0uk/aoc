@@ -14,19 +14,18 @@ q06b=(x)=>{
     chunk = []
     b = x.split("")
     for (c=14;c<b.length;c++){
-        for(d=13;d=0;d--){
-            if(b[c]!=b[c-d]){
-                uniquecount++
-            }else{
-                uniquecount=0
-                return
-            }
-        }
-        if (uniquecount==14){
-            marker = c
-            console.log('foundit')
-        }
-        console.log(uniquecount)
+        if (marker) continue
+        if (allUnique(x.substring(c-14,c))) marker=c
     }
-    return markerfollows  //not working
+    return marker
+}
+allUnique=a=>{
+    matchcount=0
+    len=a.length
+    for (let c=0;c<len;c++){
+        for(let d=0;d<len;d++){
+            if(a[c]==a[d]) matchcount++
+        }
+    }
+    return matchcount == len
 }
