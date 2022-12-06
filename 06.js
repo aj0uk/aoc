@@ -1,24 +1,3 @@
-q06a=(x)=>{
-    b = x.split("")
-    markerfollows =0
-    for(c=4;c<=b.length;c++){
-        if (markerfollows) continue
-        if (b[c-4]!=b[c-3]&&b[c-4]!=b[c-2]&&b[c-4]!=b[c-1]&&b[c-4]!=b[c]&&
-        b[c-3]!=b[c-2]&&b[c-3]!=b[c-1]&&b[c-3]!=b[c]&&
-        b[c-2]!=b[c-1]&&b[c-2]!=b[c]&&b[c-1]!=b[c]) markerfollows = c 
-    }
-    return markerfollows
-}
-q06b=(x)=>{
-    marker = uniquecount= 0
-    chunk = []
-    b = x.split("")
-    for (c=14;c<b.length;c++){
-        if (marker) continue
-        if (allUnique(x.substring(c-14,c))) marker=c
-    }
-    return marker
-}
 allUnique=a=>{
     matchcount=0
     len=a.length
@@ -29,3 +8,14 @@ allUnique=a=>{
     }
     return matchcount == len
 }
+q06=(data,uniqueLength)=>{
+    marker=0
+    b=data.split("")
+    for(c=uniqueLength;c<=b.length;c++){
+        if (marker) continue
+        if (allUnique(data.substring(c-uniqueLength,c))) marker=c
+    }
+    return marker
+}
+q06a=(x)=>{ return q06(x,4) }
+q06b=(x)=>{ return q06(x,14) }
