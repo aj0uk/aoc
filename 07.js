@@ -10,7 +10,6 @@ getSize=x=>{
     return size
 }
 
-
 getSumofSmall=(x,max)=>{
     let sumsize=0
     if (!Number.isInteger(x[1])) {
@@ -23,9 +22,21 @@ getSumofSmall=(x,max)=>{
     return sumsize
 }
 
-q07a=(x)=>{
-    let commands=x.split("\n")
-    path = []
+getSmallestabove=(x, min, max)=>{
+    if (!Number.isInteger(x[1])) {
+        let s = getSize(x)
+        if (s>=min&&s<max) {
+            max = s
+        }
+        x[1].forEach(y=>{
+            max = getSmallestabove(y,min,max)
+        })
+    }
+    return max
+}
+
+buildfs=(data)=>{
+    let commands=data.split("\n")
     depth=0
     filesystem = ""
     for (let c=0;c<commands.length;c++){
@@ -40,19 +51,23 @@ q07a=(x)=>{
                     filesystem += "['"+line[2]+"',["
                 }
             }
-        } else if (line[0]=="dir"){
-            //directory
-        }else{
+        } else if (!(line[0]=="dir")){
             filesystem += "['"+line[1]+"',"+line[0]+"],"
         }
     }
     for(;depth>0;depth--){
         filesystem+="]]"
     }
-    fs=eval(filesystem) // I'm sorry.
-    return getSumofSmall(Array.from(fs),100000)
+    return eval(filesystem) // I'm sorry.
 }
 
-q07b=(x)=>{
-    return 0
+q07a=(x)=>{ return getSumofSmall(buildfs(x),100000) }
+
+q07b=(x)=>{ 
+    fs = buildfs(x)
+    spaceneeded = 30000000
+    fscapacity = 70000000
+    freespace = fscapacity - getSize(fs)
+    needtofree = spaceneeded - freespace 
+    return getSmallestabove(fs,needtofree,fscapacity)
 }
