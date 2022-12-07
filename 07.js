@@ -47,10 +47,9 @@ buildfs=(data)=>{
 }
 
 q07a=(data, maxsize=100000)=>{ return getSumofSmall(buildfs(data),maxsize) }
-
 q07b=(data, spaceneeded=30000000,fscapacity=70000000)=>{ 
     fs = buildfs(data)
     freespace = fscapacity - getSize(fs)
-    needtofree = (spaceneeded - (fscapacity - getSize(fs)))
+    needtofree = spaceneeded - freespace
     return getSmallestabove(fs,needtofree,fscapacity)
 }
