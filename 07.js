@@ -1,31 +1,38 @@
 //obj = [name,size/[contents]]
 
 //created manually to test getsize calcs,
-filesystem = ['root',
-    ['a',
-        ['e',[
-            ['i',584]
+fs = ['root',[
+        ['a',[
+            ['e',[
+                ['i',584]
+                ]
+            ],
+            ['f',29116],
+            ['g',2557],
+            ['h.lst',62596]
+            ]
         ],
-        ['f',29116],
-        ['g',2557],
-        ['h.lst',]
-    ]],
-    ['b.txt',14848514],
-    ['c.dat',8504156],
-    ['d',[
-        ['j',4060717],
-        ['d.log',8033020],
-        ['d.ext',5626152],
-        ['k',7214296]
-    ]]
+        ['b.txt',14848514],
+        ['c.dat',8504156],
+        ['d',[
+            ['j',4060174],
+            ['d.log',8033020],
+            ['d.ext',5626152],
+            ['k',7214296]
+            ]
+        ]
+    ]
 ]
 
 getSize=x=>{
-    size=0
-    x.foreach(y=>{
-        if (Array.isArray(y[1])) size += getSize(y[1])
-        else size += y[1]
-    })
+    let size=0
+    if (Number.isInteger(x[1])) {
+        size += x[1]
+    } else {
+        x[1].forEach(y=>{
+            size += getSize(y)
+        })
+    }
     return size
 }
 
