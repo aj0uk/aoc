@@ -1,29 +1,3 @@
-//obj = [name,size/[contents]]
-
-//created manually to test getsize calcs,
-fs = ['root',[
-        ['a',[
-            ['e',[
-                ['i',584]
-                ]
-            ],
-            ['f',29116],
-            ['g',2557],
-            ['h.lst',62596]
-            ]
-        ],
-        ['b.txt',14848514],
-        ['c.dat',8504156],
-        ['d',[
-            ['j',4060174],
-            ['d.log',8033020],
-            ['d.ext',5626152],
-            ['k',7214296]
-            ]
-        ]
-    ]
-]
-
 getSize=x=>{
     let size=0
     if (Number.isInteger(x[1])) {
