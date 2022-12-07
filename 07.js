@@ -36,24 +36,47 @@ getSize=x=>{
     return size
 }
 
-sumofsmall=(x,max)=>{
-    sum = 0
-    x.foreach(x=>{
-        if(x[2]==notleaf???){
-            s = getSize(x[3])
-            if (s<=max) sum += s
-        }
-    })
-    return sum
+
+getSumofSmall=(x,max)=>{
+    let sumsize=0
+    if (!Number.isInteger(x[1])) {
+        let s = getSize(x)
+        if (s<=max) sumsize +=s
+        x[1].forEach(y=>{
+            sumsize += getSumofSmall(y,max)
+        })
+    }
+    return sumsize
 }
 
 q07a=(x)=>{
-    filesystem=['root',[]]
-    x.foreach(x=>{
-        y = x.split(" ")
-        
-    })
-    return sumofsmall(filesytem,max)
+    let commands=x.split("\n")
+    path = []
+    depth=0
+    filesystem = ""
+    for (let c=0;c<commands.length;c++){
+        line = commands[c].split(" ")
+        if (line[0]=="$"){
+            if (line[1]=="cd"){
+                if (line[2]==".."){
+                    filesystem += "]],"
+                    depth--
+                } else {
+                    depth++
+                    filesystem += "['"+line[2]+"',["
+                }
+            }
+        } else if (line[0]=="dir"){
+            //directory
+        }else{
+            filesystem += "['"+line[1]+"',"+line[0]+"],"
+        }
+    }
+    for(;depth>0;depth--){
+        filesystem+="]]"
+    }
+    fs=eval(filesystem) // I'm sorry.
+    return getSumofSmall(Array.from(fs),100000)
 }
 
 q07b=(x)=>{
