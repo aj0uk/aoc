@@ -4,8 +4,7 @@ buildForest=data=>{
     data.split("\n").forEach(row=>{
         forest.push(new Array)
         row.split("").forEach(tree=>{
-            tree++
-            tree--
+            tree++;tree--
             forest[c].push(tree)
         })
         c++
@@ -39,20 +38,24 @@ q08=(forest,x,y,scenic=false)=>{
 }
 
 q08a=(x)=>{
-    let visible = 0
+    let visible=0
     forest = buildForest(x)
     len=forest.length
     for(let c=0;c<len;c++) for(let d=0;d<len;d++) if(q08(forest,c,d)>0) visible++
     return visible
 }
+q08a=(x)=>{
+    let vis=0
+    forest=buildForest(x)
+    l=forest.length
+    for(let c=0;c<l;c++) for(let d=0;d<l;d++) if(q08(forest,c,d)>0) vis++
+    return vis
+}
 
 q08b=(x)=>{
-    let bestscore = 0
-    forest = buildForest(x)
+    let bestscore=0
+    forest=buildForest(x)
     len=forest.length
-    for(let c=0;c<len;c++) for(let d=0;d<len;d++){
-            score = q08(forest,c,d,true)
-            if(score>bestscore) bestscore=score
-        }
+    for(let c=0;c<len;c++) for(let d=0;d<len;d++) if(score = q08(forest,c,d,true),score>bestscore) bestscore=score
     return bestscore
 }
