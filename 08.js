@@ -48,28 +48,31 @@ scenicScore=(forest,x,y)=>{
     len=forest.length
     t=l=b=r=0
     x++;x--;y++;y--
-    if (!(y==0)) for(let c=y-1;c>=0;c--){
-        if (c==0||forest[y][x]<=forest[c][x]){
-            t = y-c
-            break;
+    if (y==0||x==0||y==len-1||x==len-1) return 0
+    else {
+        for(let c=y-1;c>=0;c--){
+            if (c==0||forest[y][x]<=forest[c][x]){
+                t = y-c
+                break;
+            }
         }
-    }
-    if (!(x==0)) for(let c=x-1;c>=0;c--){
-        if (c==0||forest[y][x]<=forest[y][c]){
-            l = x-c
-            break;
+        for(let c=x-1;c>=0;c--){
+            if (c==0||forest[y][x]<=forest[y][c]){
+                l = x-c
+                break;
+            }
         }
-    }
-    if (!(y==len-1)) for(let c=y+1;c<len;c++){
-        if (c==len-1||forest[y][x]<=forest[c][x]){
-            b = c-y
-            break;
+        for(let c=y+1;c<len;c++){
+            if (c==len-1||forest[y][x]<=forest[c][x]){
+                b = c-y
+                break;
+            }
         }
-    }
-    if (!(x==len-1)) for(let c=x+1;c<len;c++){
-        if (c==len-1||forest[y][x]<=forest[y][c]){
-            r = c-x
-            break;
+        for(let c=x+1;c<len;c++){
+            if (c==len-1||forest[y][x]<=forest[y][c]){
+                r = c-x
+                break;
+            }
         }
     }
     return t*l*b*r
