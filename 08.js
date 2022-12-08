@@ -39,7 +39,7 @@ q08=(forest,x,y,scenic=false)=>{
 
 q08a=(x)=>{
     let visible=0
-    forest = buildForest(x)
+    forest=buildForest(x)
     len=forest.length
     for(let c=0;c<len;c++) for(let d=0;d<len;d++) if(q08(forest,c,d)>0) visible++
     return visible
@@ -56,6 +56,6 @@ q08b=(x)=>{
     let bestscore=0
     forest=buildForest(x)
     len=forest.length
-    for(let c=0;c<len;c++) for(let d=0;d<len;d++) if(score = q08(forest,c,d,true),score>bestscore) bestscore=score
+    for(let c=0;c<len;c++) for(let d=0;d<len;d++) if(score=q08(forest,c,d,true),score>bestscore) bestscore=score
     return bestscore
 }
