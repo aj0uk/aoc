@@ -12,54 +12,30 @@ buildForest=data=>{
     })
     return forest
 }
-
-visibility=(forest,x,y)=>{
-    score = 15
+q08=(forest,x,y,scenic=false)=>{
+    (scenic)?t=l=b=r=0:score=15
     len=forest.length
     x++;x--;y++;y--
-    for(let c=y-1;c>=0;c--) if(forest[y][x]<=forest[c][x]){
-            score -= 1
-            break;
-        }
-    for(let c=x-1;c>=0;c--) if(forest[y][x]<=forest[y][c]){
-            score -= 2
-            break;
-        }
-    for(let c=y+1;c<len;c++) if(forest[y][x]<=forest[c][x]){
-            score -= 4
-            break;
-        }
-    for(let c=x+1;c<len;c++) if(forest[y][x]<=forest[y][c]){
-            score -= 8
-            break;
-        }
-    return score
-}
-
-scenicScore=(forest,x,y)=>{
-    len=forest.length
-    t=l=b=r=0
-    x++;x--;y++;y--
-    if (y==0||x==0||y==len-1||x==len-1) return 0
+    if(scenic&&(y==0||x==0||y==len-1||x==len-1)) return 0
     else {
-        for(let c=y-1;c>=0;c--) if(c==0||forest[y][x]<=forest[c][x]){
-                t = y-c
+        for(let c=y-1;c>=0;c--) if((scenic&&c==0)||forest[y][x]<=forest[c][x]){
+                (scenic)?t=y-c:score-=1
                 break;
             }
-        for(let c=x-1;c>=0;c--) if(c==0||forest[y][x]<=forest[y][c]){
-                l = x-c
+        for(let c=x-1;c>=0;c--) if((scenic&&c==0)||forest[y][x]<=forest[y][c]){
+                (scenic)?l=x-c:score-=2
                 break;
             }
-        for(let c=y+1;c<len;c++) if(c==len-1||forest[y][x]<=forest[c][x]){
-                b = c-y
+        for(let c=y+1;c<len;c++) if((scenic&&c==len-1)||forest[y][x]<=forest[c][x]){
+                (scenic)?b=c-y:score-=4
                 break;
             }
-        for(let c=x+1;c<len;c++) if(c==len-1||forest[y][x]<=forest[y][c]){
-                r = c-x
+        for(let c=x+1;c<len;c++) if((scenic&&c==len-1)||forest[y][x]<=forest[y][c]){
+                (scenic)?r=c-x:score-=8
                 break;
             }
     }
-    return t*l*b*r
+    return (scenic)?t*l*b*r:score
 }
 
 q08a=(x)=>{
