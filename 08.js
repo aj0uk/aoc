@@ -42,9 +42,7 @@ q08a=(x)=>{
     let visible = 0
     forest = buildForest(x)
     len=forest.length
-    for(let c=0;c<len;c++) for(let d=0;d<len;d++){
-            if (visibility(forest,c,d)>0) visible++
-        }
+    for(let c=0;c<len;c++) for(let d=0;d<len;d++) if(q08(forest,c,d)>0) visible++
     return visible
 }
 
@@ -53,7 +51,7 @@ q08b=(x)=>{
     forest = buildForest(x)
     len=forest.length
     for(let c=0;c<len;c++) for(let d=0;d<len;d++){
-            score = scenicScore(forest,c,d)
+            score = q08(forest,c,d,true)
             if(score>bestscore) bestscore=score
         }
     return bestscore
