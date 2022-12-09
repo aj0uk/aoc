@@ -35,7 +35,7 @@ tests =[
     ['Day 9 q1 (full data)',q09a,q09data,6269],
     ['Day 9 q2 (test data)',q09b,q09test,1],
     ['Day 9 q2 (test data2)',q09b,q09test2,36],
-    ['Day 9 q2 (full data)',0,0,0],
+    ['Day 9 q2 (full data)',q09b,q09data,2557],
     ['Day 10 q1 (test data)',0,0,0],
     ['Day 10 q1 (full data)',0,0,0],
     ['Day 10 q2 (test data)',0,0,0],
