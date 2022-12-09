@@ -7,21 +7,21 @@ moveSnake=(direction,number,length)=>{
         for(let d=1;d<length;d++){
             let relx = snake[(d-1)][0]-snake[d][0]
             let rely = snake[(d-1)][1]-snake[d][1]
-            if(relx==2 &&rely==1)  {snake[d][1]++;snake[d][0]++}
-            if(relx==2 &&rely==-1) {snake[d][1]--;snake[d][0]++}
-            if(relx==-2&&rely==1)  {snake[d][1]++;snake[d][0]--}
+            if(relx== 2&&rely== 1) {snake[d][1]++;snake[d][0]++}
+            if(relx== 2&&rely==-1) {snake[d][1]--;snake[d][0]++}
+            if(relx==-2&&rely== 1) {snake[d][1]++;snake[d][0]--}
             if(relx==-2&&rely==-1) {snake[d][1]--;snake[d][0]--}
-            if(relx==1 &&rely==2)  {snake[d][1]++;snake[d][0]++}
-            if(relx==-1&&rely==2)  {snake[d][1]++;snake[d][0]--}
-            if(relx==1 &&rely==-2) {snake[d][1]--;snake[d][0]++}
+            if(relx== 1&&rely== 2) {snake[d][1]++;snake[d][0]++}
+            if(relx==-1&&rely== 2) {snake[d][1]++;snake[d][0]--}
+            if(relx== 1&&rely==-2) {snake[d][1]--;snake[d][0]++}
             if(relx==-1&&rely==-2) {snake[d][1]--;snake[d][0]--}
-            if(relx==0 &&rely==2)   snake[d][1]++;
-            if(relx==0 &&rely==-2)  snake[d][1]--;
-            if(relx==2 &&rely==0)   snake[d][0]++;
-            if(relx==-2&&rely==0)   snake[d][0]--;
-            if(relx==2&&rely==2)   {snake[d][0]++;snake[d][1]++;}
-            if(relx==2&&rely==-2)  {snake[d][0]--;snake[d][1]++;}
-            if(relx==-2&&rely==2)  {snake[d][0]++;snake[d][1]--;}
+            if(relx== 0&&rely== 2)  snake[d][1]++;
+            if(relx== 0&&rely==-2)  snake[d][1]--;
+            if(relx== 2&&rely== 0)  snake[d][0]++;
+            if(relx==-2&&rely== 0)  snake[d][0]--;
+            if(relx== 2&&rely== 2) {snake[d][0]++;snake[d][1]++;}
+            if(relx== 2&&rely==-2) {snake[d][0]++;snake[d][1]--;}
+            if(relx==-2&&rely== 2) {snake[d][0]--;snake[d][1]++;}
             if(relx==-2&&rely==-2) {snake[d][0]--;snake[d][1]--;}
         }
         if (!(snaketailhistory.includes(snake[length-1][0]+","+snake[length-1][1]))) snaketailhistory.push(snake[length-1][0]+","+snake[length-1][1])
