@@ -22,20 +22,11 @@ moveSnake=(direction,number,len)=>{
     }
 }
 
-buildSnake=(length)=>{
-    snake=[]
-    for(c=0;c<length;c++) snake.push([0,0])
-    return snake
-}
-
 q09=(x,length)=>{
-    snake=buildSnake(length)
+    snake=[]
     snaketailhistory=[]
-    x.split("\n").forEach(y=>{
-        d=y.split(" ")[0]
-        n=y.split(" ")[1]
-        moveSnake(d,n,snake.length)
-    })
+    for(c=0;c<length;c++) snake.push([0,0])
+    x.split("\n").forEach(y=>{ moveSnake(y.split(" ")[0],y.split(" ")[1],snake.length) })
     return snaketailhistory.length
 }
 
