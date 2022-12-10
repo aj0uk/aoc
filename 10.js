@@ -18,6 +18,38 @@ q10a=(x)=>{
     }
     return sumofsignals
 }
+drawpixel=(sprite,c)=>{
+    let l=c%40
+    if (l==sprite-1||l==sprite||l==sprite+1) return "#"
+    return "."
+}
+render=image=>{
+    l=""
+    for(let c=0;c<image.length+1;c++){
+        if(c%40==0){
+            console.log(l)
+            l=""
+        }
+        if (image[c]==".") l+=" "
+        if (image[c]=="#") l+="#"
+    }
+}
 q10b=(x)=>{
-    return 0
+    line=0
+    X=1
+    picture=""
+    instruction = x.split("\n")
+    for(c=1;c<241;){
+        op=instruction[line]
+        cyclecount = (op=="noop")?1:2 
+        for (d=0;d<cyclecount;d++){
+            picture+=drawpixel(X,c-1)
+            c++
+        }
+        if(!(op=="noop")){
+            X+=parseInt(op.split(" ")[1])
+        }
+        line++
+    }
+    return picture
 }
