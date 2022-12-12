@@ -44,18 +44,29 @@ add=(a,b)=>{
     return sum
 }
 
+subtract=(a,b)=>{
+    //todo
+}
+
 multiply=(a,b)=>{
     let sum=""
     let counter="0"
     if (Number.isInteger(a)) a=a.toString()
     if (Number.isInteger(b)) b=b.toString()
-    if(a.length>b.length) for(let len=(a.length-b.length);len>0;len--) b=0+b
-    if(a.length<b.length) for(let len=(b.length-a.length);len>0;len--) a=0+a
     while(a!==counter){
         sum=add(sum,b)
         counter=add(counter,1)
     }
     return sum
+}
+divide=(a,b)=>{
+    let sum=""
+    let counter="0"
+    if (Number.isInteger(a)) a=a.toString()
+    if (Number.isInteger(b)) b=b.toString()
+    
+    //subtract b from a and count untill a<b, then return value
+    
 }
 
 q11=(x,rounds,reduceworry = false)=>{  
@@ -84,6 +95,11 @@ q11=(x,rounds,reduceworry = false)=>{
     
                         }
                     }
+                    if(divide(newworrylevel,monkeys[d][1][2])==0){
+                        monkeys[monkeys[d][1][3]][0].push(newworrylevel)
+                    } else {
+                        monkeys[monkeys[d][1][4]][0].push(newworrylevel)                    
+                    }
                 }else{
                     switch(monkeys[d][1][0]){
                     case "*":
@@ -102,12 +118,13 @@ q11=(x,rounds,reduceworry = false)=>{
                         }
                     }
                     newworrylevel=Math.floor(newworrylevel/3)
+                    if(newworrylevel%monkeys[d][1][2]==0){
+                        monkeys[monkeys[d][1][3]][0].push(newworrylevel)
+                    } else {
+                        monkeys[monkeys[d][1][4]][0].push(newworrylevel)                    
+                    }
                 }
-                if(newworrylevel%monkeys[d][1][2]==0){
-                    monkeys[monkeys[d][1][3]][0].push(newworrylevel)
-                } else {
-                    monkeys[monkeys[d][1][4]][0].push(newworrylevel)                    
-                }
+
             }
         }
     }
