@@ -21,7 +21,44 @@ setupMonkeys=(x)=>{
     return monkeys
 }
 
-q11a=(x)=>{  
+
+add=(a,b)=>{
+    let sum=""
+    let carry=0
+    if (Number.isInteger(a)) a=a.toString()
+    if (Number.isInteger(b)) b=b.toString()
+    if(a.length>b.length) for(let len=(a.length-b.length);len>0;len--) b=0+b
+    if(a.length<b.length) for(let len=(b.length-a.length);len>0;len--) a=0+a
+    for(let c=a.length-1;c>=0;c--){
+        val = (parseInt(a[c])+parseInt(b[c])+carry).toString()
+        carry=0
+        
+        if (val.length==2){
+            carry = parseInt(val[0])
+            sum = (val[1].toString())+sum
+        } else {
+            sum = val+sum
+        }
+    }
+    if (carry) sum = carry.toString()+sum
+    return sum
+}
+
+multiply=(a,b)=>{
+    let sum=""
+    let counter="0"
+    if (Number.isInteger(a)) a=a.toString()
+    if (Number.isInteger(b)) b=b.toString()
+    if(a.length>b.length) for(let len=(a.length-b.length);len>0;len--) b=0+b
+    if(a.length<b.length) for(let len=(b.length-a.length);len>0;len--) a=0+a
+    while(a!==counter){
+        sum=add(sum,b)
+        counter=add(counter,1)
+    }
+    return sum
+}
+
+q11=(x,rounds,reduceworry = false)=>{  
     monkeys=setupMonkeys(x)
     for(let c=0;c<20;c++){  
         for(let d=0;d<monkeys.length;d++){ 
@@ -30,22 +67,42 @@ q11a=(x)=>{
                 e--
                 monkeys[d][2]++
                 let newworrylevel = 0 
-                switch(monkeys[d][1][0]){
-                case "*":
-                    if (monkeys[d][1][1]){
-                        newworrylevel=item * monkeys[d][1][1]
-                    } else {
-                        newworrylevel=item * item
+                if(reduceworry){
+                    switch(monkeys[d][1][0]){
+                    case "*":
+                        if (monkeys[d][1][1]){
+                            newworrylevel=multiply(item,monkeys[d][1][1])
+                        } else {
+                            newworrylevel=multiply(item,item)
+                        }
+                        break
+                    case "+":
+                        if (monkeys[d][1][1]){
+                            newworrylevel=add(item,monkeys[d][1][1])
+                        } else {
+                            newworrylevel=add(item,item)
+    
+                        }
                     }
-                    break
-                case "+":
-                    if (monkeys[d][1][1]){
-                        newworrylevel=item + monkeys[d][1][1]
-                    } else {
-                        newworrylevel=item + item
+                }else{
+                    switch(monkeys[d][1][0]){
+                    case "*":
+                        if (monkeys[d][1][1]){
+                            newworrylevel=item*monkeys[d][1][1]
+                        } else {
+                            newworrylevel=item*item
+                        }
+                        break
+                    case "+":
+                        if (monkeys[d][1][1]){
+                            newworrylevel=item+monkeys[d][1][1]
+                        } else {
+                            newworrylevel=item+item
+    
+                        }
                     }
+                    newworrylevel=Math.floor(newworrylevel/3)
                 }
-                newworrylevel=Math.floor(newworrylevel/3)
                 if(newworrylevel%monkeys[d][1][2]==0){
                     monkeys[monkeys[d][1][3]][0].push(newworrylevel)
                 } else {
@@ -59,4 +116,6 @@ q11a=(x)=>{
     inspectcount.sort(function(a, b){return b - a})
     return inspectcount[0]*inspectcount[1]
 }
-q11b=(x)=>{ return 0 }
+q11a=(x)=>{ return q11(x,20) }
+q11b=(x)=>{ return q11(x,10000,true) }
+
