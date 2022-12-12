@@ -21,6 +21,17 @@ setupMonkeys=(x)=>{
     return monkeys
 }
 
+removeleadingzeros=(a)=>{
+    for(let c=0;c<a.length;c++) {
+        if (a[c]==0) {
+            a=a.substring(1)
+            c--
+        }else{
+            break
+        }
+    }
+    return a
+}
 
 add=(a,b)=>{
     let sum=""
@@ -32,7 +43,6 @@ add=(a,b)=>{
     for(let c=a.length-1;c>=0;c--){
         val = (parseInt(a[c])+parseInt(b[c])+carry).toString()
         carry=0
-        
         if (val.length==2){
             carry = parseInt(val[0])
             sum = (val[1].toString())+sum
@@ -41,11 +51,28 @@ add=(a,b)=>{
         }
     }
     if (carry) sum = carry.toString()+sum
-    return sum
+    return removeleadingzeros(sum)
 }
 
 subtract=(a,b)=>{
-    //todo
+    // doesn't handle negatives, doesn't cope with b>a
+    let sum=""
+    let carry=0
+    if (Number.isInteger(a)) a=a.toString()
+    if (Number.isInteger(b)) b=b.toString()
+    if(a.length>b.length) for(let len=(a.length-b.length);len>0;len--) b=0+b
+    if(a.length<b.length) for(let len=(b.length-a.length);len>0;len--) a=0+a
+    for(let c=a.length-1;c>=0;c--){
+        val = (parseInt(a[c])-(parseInt(b[c])+carry)).toString()
+        carry=0
+        if(parseInt(val)<0){
+            carry=1
+            sum=(parseInt(10-val[1])).toString()+sum
+        } else {
+            sum=val.toString()+sum
+        }
+    }
+    return removeleadingzeros(sum)
 }
 
 multiply=(a,b)=>{
@@ -57,21 +84,39 @@ multiply=(a,b)=>{
         sum=add(sum,b)
         counter=add(counter,1)
     }
-    return sum
+    return removeleadingzeros(sum)
 }
-divide=(a,b)=>{
-    let sum=""
+
+lessthan=(a,b)=>{ 
+    if (Number.isInteger(a)) a=a.toString()
+    if (Number.isInteger(b)) b=b.toString()
+    a = removeleadingzeros(a)
+    b = removeleadingzeros(b)
+    if (a.length>b.length) return true
+    if (a.length<b.length) return false
+    for(let c=0;c<a.length;c++){
+        if(parseInt(a[c])>parseInt(b[c])) return true
+        if(parseInt(a[c])<parseInt(b[c])) return false
+    }
+    return false
+}
+
+devide=(a,b)=>{ 
     let counter="0"
     if (Number.isInteger(a)) a=a.toString()
     if (Number.isInteger(b)) b=b.toString()
-    
-    //subtract b from a and count untill a<b, then return value
-    
+    let sum=a
+    while(!lessthan(b,sum)){
+        sum = subtract(sum,b)
+        console.log
+        counter = add(counter,1)
+    }
+    return [counter,sum]
 }
 
 q11=(x,rounds,reduceworry = false)=>{  
     monkeys=setupMonkeys(x)
-    for(let c=0;c<20;c++){  
+    for(let c=0;c<rounds;c++){  
         for(let d=0;d<monkeys.length;d++){ 
             for(let e=0;e<monkeys[d][0].length;e++){
                 item = monkeys[d][0].shift()
@@ -95,7 +140,7 @@ q11=(x,rounds,reduceworry = false)=>{
     
                         }
                     }
-                    if(divide(newworrylevel,monkeys[d][1][2])==0){
+                    if(devide(newworrylevel,monkeys[d][1][2])[1]==""){
                         monkeys[monkeys[d][1][3]][0].push(newworrylevel)
                     } else {
                         monkeys[monkeys[d][1][4]][0].push(newworrylevel)                    
@@ -124,7 +169,7 @@ q11=(x,rounds,reduceworry = false)=>{
                         monkeys[monkeys[d][1][4]][0].push(newworrylevel)                    
                     }
                 }
-
+                
             }
         }
     }
@@ -135,4 +180,3 @@ q11=(x,rounds,reduceworry = false)=>{
 }
 q11a=(x)=>{ return q11(x,20) }
 q11b=(x)=>{ return q11(x,10000,true) }
-
