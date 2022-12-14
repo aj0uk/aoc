@@ -11,22 +11,18 @@ inOrder=(a,b)=>{
             if(a[c]<b[c]) return true
             if(a[c]>b[c]) return false
         }else if(Array.isArray(a[c])&&Array.isArray(b[c])){
-            if (a[c]==undefined) return true
-            if (b[c]==undefined) return false
-            let f=a[c].toString()
-            let g=b[c].toString()
-            if(!(f==g)||a[c][0]==undefined||b[c][0]==undefined) return inOrder(a[c],b[c])
+            if(!(a[c].toString()==b[c].toString())||
+                 a[c][0]==undefined||
+                 b[c][0]==undefined) return inOrder(a[c],b[c])
         }else {            
             if(Number.isInteger(a[c])) {
-                let f=a[c]
                 let h=[]
-                h.push(parseInt(f))
+                h.push(parseInt(a[c]))
                 if(!(b[c].toString()==h.toString())) return inOrder(h,b[c])
             } 
             if(Number.isInteger(b[c])){
-                let g=b[c].toString()
                 let h=[]
-                h.push(parseInt(g))
+                h.push(parseInt(b[c]))
                 if(!(a[c].toString()==h.toString())) return inOrder(a[c],h)
             }
         }
@@ -48,6 +44,40 @@ q13a=(x)=>{
     pairsinrightorder.forEach(y=> sum+=y )
     return sum
 }
+
 q13b=(x)=>{
-    return 0
+    let dividerPackets=[]
+    let sortedPackets=[]
+    let data=x.split("\n")
+    let sorted=false
+    d=0
+    data.push("")
+    data.push("[[2]]")
+    data.push("[[6]]")
+    for(let c=2;c<data.length+1;c+=3){
+        a=eval(data[c-2])
+        b=eval(data[c-1])
+        if(inOrder(a,b)) {
+            sortedPackets.push(a)
+            sortedPackets.push(b)
+        }else{
+            sortedPackets.push(b)
+            sortedPackets.push(a)            
+        }
+    }
+    for(let c=0;c<sortedPackets.length;c++){
+        for(let d=0;d<sortedPackets.length-1;d++){
+            if(!inOrder(sortedPackets[d],sortedPackets[d+1])){
+                temp=sortedPackets[d]
+                sortedPackets[d]=sortedPackets[d+1]
+                sortedPackets[d+1]=temp
+            }
+        }
+    }
+    for(let d=0;d<sortedPackets.length-1;d++){
+        if(sortedPackets[d].toString()==(2).toString()) dividerPackets.push(d+1)
+        if(sortedPackets[d].toString()==(6).toString()) dividerPackets.push(d+1)
+    }
+    console.log(dividerPackets)
+    return dividerPackets[0]*dividerPackets[1]
 }
