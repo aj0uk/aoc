@@ -9,7 +9,7 @@ possible=(knownLocations,x,y)=>{
             break;
         }
     }
-    return [poss,(diff)?diff:1]
+    return [poss,(diff)?diff+1:1]
 }
 
 parseInput=(x)=>{
