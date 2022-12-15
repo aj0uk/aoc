@@ -9,7 +9,7 @@ possible=(knownLocations,x,y)=>{
             break;
         }
     }
-    return [poss,diff]
+    return [poss,(diff)?diff:1]
 }
 
 parseInput=(x)=>{
@@ -38,7 +38,11 @@ q15a=(input)=>{
     let count=0
     let data=parseInput(input[0])
     let beacons=[]
-    for(let c=data[2];c<data[3];c++) if(!possible(data[0],c,line)[0]) count++
+    for(let c=data[2];c<data[3];) {
+        let e=possible(data[0],c,line)
+        if(!e[0]) count+=e[1]
+        c+=e[1]
+    }
     data[1].forEach(z=>{ if(!(beacons.includes(z))) beacons.push(z) })
     beacons.forEach(z=>{ if(z.split(",")[1]==line)  count--         })
     return count
@@ -48,16 +52,15 @@ q15b=(input)=>{
     let data=parseInput(input[0])
     let maxxy=input[1]
     let x=y=0
-    for(let c=0;c<=maxxy;c++){
-        for(let d=0;d<=maxxy;){
+    for(let c=maxxy;c>0;c--){
+        for(let d=maxxy;d>0;){
             e = possible(data[0],c,d)
             if(e[0]){
                 x=c
                 y=d
                 break;
             }
-            next=(e[1])?e[1]:1
-            d+=next
+            d-=e[1]
         }
         if(x!=0) break;
     }
