@@ -37,6 +37,18 @@ q15a=(input)=>{
     beacons.forEach(z=>{ if(z.split(",")[1]==line)  count--         })
     return count
 }
-q15b=(x)=>{
-    return 0
+q15b=(input)=>{
+    let data=parseInput(input[0])
+    let maxxy=input[1]
+    let x=0
+    let y=0
+    for(let c=0;c<=maxxy;c++){
+        for(let d=0;d<=maxxy;d++){
+            if(possible(data[0],c,d)){
+                x=c
+                y=d
+            }
+        }
+    }
+    return (x*4000000)+y
 }
