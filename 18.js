@@ -47,20 +47,18 @@ q18b=(x)=>{
         world.push(plane)
     }
     data.forEach(line=> { world[line.split(",")[0]][line.split(",")[1]][line.split(",")[2]]=1 })
-    for(let b=1;b<=maX;b++){
-        for(let c=1;c<=maY;c++){
-            for(let d=1;d<=maZ;d++){
-                if(!world[b][c][d]&&!isEdge(world,b,c,d)){
-                        world[b][c][d]=1
-                        count+=6
-                }
-            }
+    for(let b=1;b<=maX;b++) for(let c=1;c<=maY;c++) for(let d=1;d<=maZ;d++){
+        if(!world[b][c][d]&&!isEdge(world,b,c,d)){
+            world[b][c][d]=1
+            count+=6
         }
     }
-    for(let b=1;b<=maX;b++) for(let c=1;c<=maY;c++) for(let d=1;d<=maZ;d++) if(world[b][c][d]===1){
-                    if(world[b][c][d+1]===1) count-=2
-                    if(world[b][c+1][d]===1) count-=2
-                    if(world[b+1][c][d]===1) count-=2
-                }
+    for(let b=1;b<=maX;b++) for(let c=1;c<=maY;c++) for(let d=1;d<=maZ;d++){
+        if(world[b][c][d]===1){
+            if(world[b][c][d+1]===1) count-=2
+            if(world[b][c+1][d]===1) count-=2
+            if(world[b+1][c][d]===1) count-=2
+        }
+    }
     return count
 }
