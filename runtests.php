@@ -12,31 +12,49 @@
     <script src="./tests.js"></script>
     </head>
     <body><pre>
-    <ul id='results'></ul><summary></summary><br><button onclick="runtests(tests)">Re-Run Tests</button>
+    <ul id='results'></ul><br>
+    <summary></summary>
+    </pre>
+    <button id="run" onclick="runTests(tests)">Re-Run Tests</button>
     <script>
-    test=(func,data,result)=> {
-       return func(data)==result
+    test=(func,data,expected)=>{
+        return new Promise((resolve) => {
+            let t0= performance.now()
+            let status=(func(data)==expected)?"Passed":"Failed"
+            let t1= performance.now()
+            let exectime=t1-t0
+            resolve([status,exectime]);
+        });
     }
-    (runtests=(t)=>{
-        totaltime=passed=failed=0
+    drawSummary=(p,f,c,t)=>{
+        document.getElementsByTagName("summary")[0].innerHTML=`
+    Passed:  ${p}    Failed:  ${f}    Running: ${c-(p+f)}
+
+        Finished ${p+f} tests in ${t} seconds
+`
+    }
+    drawTest=(div,result)=>{
+        (result[0]=="Passed")?passed++:failed++
+        totaltime+=result[1]
+        document.getElementById(div).innerHTML = result[0]+' in <time>'+(result[1]).toFixed(2)+'</time> ms'
+        drawSummary(passed,failed,count,(totaltime/1000).toFixed(2))
+    }
+    (runTests=(t)=>{
+        totaltime=passed=failed=count=0
         document.getElementById('results').innerHTML=""
-        t.map(x=>{
+        t.forEach(x=>{
             if (x[3]) {
-                let t0= performance.now()
-                status=test(x[1],x[2],x[3])?"Passed":"Failed"
-                let t1= performance.now()
-                exectime=t1-t0
+                let id='t'+count++
+                drawSummary(0,0,count,"0.00")
                 a=document.createElement('li')
-                a.innerHTML=x[0]+' -- '+status+' in '+(exectime).toFixed(2) +' milliseconds'
-                totaltime+=exectime
-                if(status=="Passed") passed++
-                else failed++
+                a.innerHTML=x[0]+" -- <test id='"+id+"'>Running</test>"
                 document.getElementById('results').appendChild(a)
+                setTimeout(()=>{ 
+                    test( x[1], x[2], x[3]).then(result=> drawTest(id,result) )
+                },5)
             }
         })
-        document.getElementsByTagName("summary")[0].innerHTML=`Executed ${passed+failed} tests in ${(totaltime/1000).toFixed(2)} seconds. Passed: ${passed}, Failed: ${failed}`
     })(tests)
-    console.log('Tests Complete')
     </script>
     </body>
 </html>
