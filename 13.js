@@ -1,3 +1,9 @@
+/*
+Day 13 q1 (test data) -- Passed in 0.30 ms
+Day 13 q1 (full data) -- Passed in 4.60 ms
+Day 13 q2 (test data) -- Passed in 0.60 ms
+Day 13 q2 (full data) -- Passed in 136.60 ms
+*/
 inOrder=(a,b)=>{
     longestarray=(a.length>b.length)?a.length:b.length
     if(a.length==0&&(!(b.length==0))) return true 
