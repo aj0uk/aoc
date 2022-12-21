@@ -1,3 +1,9 @@
+/*
+Day 15 q1 (test data) -- Passed in 0.30 ms
+Day 15 q1 (full data) -- Passed in 229.80 ms
+Day 15 q2 (test data) -- Passed in 0.10 ms
+Day 15 q2 (full data) -- Passed in 1372.20 ms
+*/
 possible=(knownLocations,x,y)=>{
     let poss=true
     let diff=0
