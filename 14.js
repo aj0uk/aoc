@@ -1,3 +1,9 @@
+/*
+Day 14 q1 (test data) -- Passed in 0.80 ms
+Day 14 q1 (full data) -- Passed in 37.80 ms
+Day 14 q2 (test data) -- Passed in 0.70 ms
+Day 14 q2 (full data) -- Passed in 790.20 ms
+*/
 getLargestCords=(x)=>{
     let largestX = 2
     let largestY = 2
