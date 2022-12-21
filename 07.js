@@ -1,4 +1,9 @@
-getSize=fs=>{
+/*
+Day 7 q1 (test data) -- Passed in 0.20 ms
+Day 7 q1 (full data) -- Passed in 1.40 ms
+Day 7 q2 (test data) -- Passed in 0.20 ms
+Day 7 q2 (full data) -- Passed in 0.90 ms
+*/getSize=fs=>{
     let size=0
     if (Number.isInteger(fs[1])) size+=fs[1]
     else fs[1].forEach(y=> size+=getSize(y) )
