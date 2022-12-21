@@ -1,3 +1,9 @@
+/*
+Day 4 q1 (test data) -- Passed in 0.00 ms
+Day 4 q1 (full data) -- Passed in 1.60 ms
+Day 4 q2 (test data) -- Passed in 0.00 ms
+Day 4 q2 (full data) -- Passed in 0.60 ms
+*/
 q04=(data,rules=0)=>{
     let count = 0
     data.split("\n").forEach(y=>{
