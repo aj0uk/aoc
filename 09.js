@@ -1,3 +1,9 @@
+/*
+Day 9 q1 (test data) -- Passed in 0.10 ms
+Day 9 q1 (full data) -- Passed in 52.60 ms
+Day 9 q2 (test data) -- Passed in 0.10 ms
+Day 9 q2 (full data) -- Passed in 22.50 ms
+*/
 moveMap = [[[-1,-1],[-1,-1],[-1,0],[-1,1],[-1,1]], 
            [[-1,-1],[ 0, 0],[ 0,0],[ 0,0],[-1,1]],
            [[ 0,-1],[ 0, 0],[ 0,0],[ 0,0],[ 0,1]],
