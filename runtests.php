@@ -28,7 +28,7 @@
     }
     drawSummary=(p,f,c,t)=>{
         document.getElementsByTagName("summary")[0].innerHTML=`
-    Passed:  ${p}    Failed:  ${f}    Running: ${c-(p+f)}
+    Passed: ${p}    Failed: ${f}    Running: ${c-(p+f)}     Not Run: ${notrun}
 
         Finished ${p+f} tests in ${t} seconds
 `
@@ -40,7 +40,7 @@
         drawSummary(passed,failed,count,(totaltime/1000).toFixed(2))
     }
     (runTests=(t)=>{
-        totaltime=passed=failed=count=0
+        totaltime=passed=failed=count=notrun=0
         document.getElementById('results').innerHTML=""
         t.forEach(x=>{
             if (x[3]) {
@@ -52,7 +52,7 @@
                 setTimeout(()=>{ 
                     test( x[1], x[2], x[3]).then(result=> drawTest(id,result) )
                 },5)
-            }
+            } else notrun++
         })
     })(tests)
     </script>
