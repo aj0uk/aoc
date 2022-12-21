@@ -1,3 +1,8 @@
+/*
+Day 17 q1 (test data) -- Passed in 52.40 ms
+Day 17 q1 (full data) -- Passed in 55.80 ms
+Day 17 q2 (test data) -- Failed in 124.60 ms
+*/
 newPiece=p=>{
     let pieces=[
 [[".",".","@","@","@","@","."]],
