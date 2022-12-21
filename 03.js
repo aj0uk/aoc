@@ -1,3 +1,9 @@
+/*
+Day 3 q1 (test data) -- Passed in 0.20 ms
+Day 3 q1 (full data) -- Passed in 0.70 ms
+Day 3 q2 (test data) -- Passed in 0.10 ms
+Day 3 q2 (full data) -- Passed in 0.30 ms
+*/
 q3letterValue=(char)=>{
     val = char.charCodeAt(0)
     if (val > 95){
