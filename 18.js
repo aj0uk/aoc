@@ -1,3 +1,9 @@
+/*
+Day 18 q1 (test data) -- Passed in 0.10 ms
+Day 18 q1 (full data) -- Passed in 69.70 ms
+Day 18 q2 (test data) -- Passed in 0.20 ms
+Day 18 q2 (full data) -- Passed in 6.50 ms
+*/
 q18a=x=>{
     let data=x.split("\n")
     let count=data.length*6
