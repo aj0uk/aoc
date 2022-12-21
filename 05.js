@@ -1,3 +1,9 @@
+/*
+Day 5 q1 (test data) -- Passed in 0.20 ms
+Day 5 q1 (full data) -- Passed in 0.60 ms
+Day 5 q2 (test data) -- Passed in 0.10 ms
+Day 5 q2 (full data) -- Passed in 0.50 ms
+*/
 q05=(data,CrateMover9001=false)=>{
     topLetters= ''
     setup = true
