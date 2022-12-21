@@ -1,3 +1,9 @@
+/*
+Day 10 q1 (test data) -- Passed in 0.10 ms
+Day 10 q1 (full data) -- Passed in 0.10 ms
+Day 10 q2 (test data) -- Passed in 0.10 ms
+Day 10 q2 (full data) -- Passed in 0.00 ms
+*/
 q10=(x,debug=false)=>{
     (debug)?sumofsignals=0:picture=""
     line=0
