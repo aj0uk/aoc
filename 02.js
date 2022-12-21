@@ -1,3 +1,11 @@
+/*
+Day 2 q1 (test data) -- Passed in 0.00 ms
+Day 2 q1 (full data) -- Passed in 0.90 ms
+Day 2 q2 (test data) -- Passed in 0.00 ms
+Day 2 q2 (full data) -- Passed in 1.00 ms
+*/
+
+
 q2gameScore = {
     X:{A:4,B:1,C:7},
     Y:{A:8,B:5,C:2},
