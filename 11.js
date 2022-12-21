@@ -1,3 +1,8 @@
+/*
+Day 11 q1 (test data) -- Passed in 0.30 ms
+Day 11 q1 (full data) -- Passed in 0.30 ms
+Day 11 q2 (test data) -- Failed in 0.10 ms
+*/
 makeInt=(x,big)=>{ return (big)?BigInt(x):parseInt(x) }
 
 setupMonkeys=(x,big)=>{
