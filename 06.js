@@ -1,3 +1,9 @@
+/*
+Day 6 q1 (test data) -- Passed in 0.10 ms
+Day 6 q1 (full data) -- Passed in 1.10 ms
+Day 6 q2 (test data) -- Passed in 0.10 ms
+Day 6 q2 (full data) -- Passed in 4.70 ms
+*/
 allUnique=a=>{
     matchcount=0
     len=a.length
