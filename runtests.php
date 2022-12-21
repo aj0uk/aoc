@@ -37,7 +37,7 @@
         (result[0]=="Passed")?passed++:failed++
         totaltime+=result[1]
         document.getElementById(div).innerHTML = result[0]+' in <time>'+(result[1]).toFixed(2)+'</time> ms'
-        drawSummary(passed,failed,count,(totaltime/1000).toFixed(2))
+        drawSummary(passed,failed,count,(totaltime/1000).toFixed(2),notrun)
     }
     (runTests=(t)=>{
         totaltime=passed=failed=count=notrun=0
