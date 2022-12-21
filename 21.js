@@ -1,3 +1,8 @@
+/*
+Day 21 q1 (test data) -- Passed in 0.40 ms
+Day 21 q1 (full data) -- Passed in 219.30 ms
+Day 21 q2 (test data) -- Failed in 0.00 ms
+*/
 q21a=(x)=>{
     y=x.split("\n")
     len=y.length
