@@ -16,31 +16,16 @@ q25=(x)=>{
         return dec
     }
     dec2snafu=dec=>{
+        d2s=["0","1","2","=","-"]
         snafu=""
         ord=1
         while(dec>0){
             ord=ord*5
             r=dec%ord
             dec=dec-r
-            switch(r/(ord/5)){
-                case 4:
-                    snafu="-"+snafu
-                    dec+=ord
-                    break
-                case 3:
-                    snafu="="+snafu
-                    dec+=ord
-                    break
-                case 2:
-                    snafu="2"+snafu
-                    break
-                case 1:
-                    snafu="1"+snafu
-                    break
-                case 0: 
-                    snafu="0"+snafu
-                    break
-            }
+            cur=r/(ord/5)
+            snafu=d2s[cur]+snafu
+            if(cur>2) dec+=ord
         }
         return snafu
     }
