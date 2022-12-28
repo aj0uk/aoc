@@ -55,8 +55,8 @@ My attempts at https://adventofcode.com/2022
 * Day 25 q2 -- Not Run
             
 
-    Passed: 32    Failed: 4    Running: 0     Not Run: 14
+          Passed: 32    Failed: 4    Running: 0     Not Run: 14
 
-        Passed 36 tests in 2.77 seconds
+          Passed 36 tests in 2.77 seconds
         
         
