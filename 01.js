@@ -5,20 +5,22 @@ Day 1 q2 (test data) -- Passed in 0.00 ms
 Day 1 q2 (full data) -- Passed in 0.50 ms
 */
 
-q01=(data,topThree=false)=>{
-    runningSum=highestSum=currentValue=0
-    sums=[]
-    data.split("\n").forEach(x=>{
-        currentValue = parseInt(x)
-        if(x==""){
-            (topThree)?sums.push(runningSum):highestSum=(runningSum>highestSum)?runningSum:highestSum
-            runningSum=0
-        } else { 
-            runningSum += currentValue
-        }
-    })
-    if(topThree) sums.sort(function(a, b){return b - a})
-    return topThree?sums[0]+sums[1]+sums[2]:highestSum
+q01=([a,b],f=parse(a))=> f.sort((a,b)=>b-a).slice(0, b).reduce((s,v)=> s+v,0)
+
+parse=x=>{
+    let f=[]
+    y.forEach(l=>{
+            if(l==""){
+                f.push(c)
+                c=0
+            }else c+=parseInt(l)
+        })
+    return f
 }
-q01a=(x)=>{ return q01(x) }
-q01b=(x)=>{ return q01(x,true) }
+
+q1Tests=[
+    ['Day 01 q1 (test data)',q01,[q01test,1],24000],
+    ['Day 01 q1',            q01,[q01data,1],67622],
+    ['Day 01 q2 (test data)',q01,[q01test,3],45000],
+    ['Day 01 q2',            q01,[q01data,3],201491]
+]
