@@ -75,3 +75,10 @@ parse=x=>{
         for(let c=0;c<100;c++) for(let d=0;d<map.length;d++) map[d].push(map00[0])
         return map
 }
+
+q23Tests=[
+    ['Day 23 q1 (test data)',q23,[q23test,10],110],
+    ['Day 23 q1',            q23,[q23data,10],3800],
+    ['Day 23 q2 (test data)',q23,[q23test,0],20],
+    ['Day 23 q2',            q23,[q23data,0],916]
+]
