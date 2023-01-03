@@ -20,7 +20,7 @@ map03 = {
 q02=([a,b,c=0])=> a.split("\n").reduce((s,v)=> s+b[(c)?c[v.split(" ")[1]][v.split(" ")[0]]:v.split(" ")[1]][v.split(" ")[0]] ,0)
 
 q2Tests=[
-    ['Day 02 q1 (test data)',q02,[q02test,map02,0],15],
+    ['Day 02 q1 (test data)',q02,[q02test,map02],15],
     ['Day 02 q1',            q02,[q02data,map02],14264],
     ['Day 02 q2 (test data)',q02,[q02test,map02,map03],12],
     ['Day 02 q2',            q02,[q02data,map02,map03],12382]
